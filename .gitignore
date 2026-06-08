@@ -1,3 +1,6 @@
+# Regenerable artifacts (e.g. files, folders)
+tests/fixtures/downloads_sample/
+
 # Python-generated files
 __pycache__/
 *.py[oc]
