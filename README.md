@@ -39,6 +39,23 @@ Review Files (Category)
 ### File Recommendations
 After scanning and categorizing files, the tool analyzes them and recommends files that may be safe candidates for cleanup.
 
+Files are automatically flagged for safe recycling based on their category:
+
+- **TEMPORARY:** .tmp, .crdownload, .part  
+  Leftover or incomplete downloads.
+
+- **INSTALLER:** .exe, .msi, .pkg  
+  Typically used only for installation.
+
+- **ARCHIVE:** .zip, .rar, .7z  
+  Often old backups or extracted content.
+
+**Files that are not automatically recycled (require manual review):**
+
+- **DOCUMENT:** .pdf, .docx, .txt  
+- **MEDIA:** .jpg, .mp3, .mp4  
+- **UNKNOWN:** any unrecognized file types
+
 **Example:**
 ```
 6 file(s) recommended for recycling:
@@ -73,6 +90,7 @@ Sort options:
 ```
 
 **Category View**
+
 Groups files by file type categories such as:
 
 - Documents
@@ -83,6 +101,7 @@ Groups files by file type categories such as:
 - Unknown Files
 
 **Age View**
+
 Groups files by age ranges:
 
 - Last 30 Days
@@ -92,6 +111,7 @@ Groups files by age ranges:
 - Over 1 Year
 
 **Extension View**
+
 Groups files by file extension:
 
 - .pdf
