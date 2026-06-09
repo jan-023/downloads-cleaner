@@ -15,6 +15,7 @@ def test_scan_directory_returns_files(sample_downloads):
     assert hasattr(first, "extension")
     assert hasattr(first, "modified")
 
+
 def test_all_files_have_valid_structure(sample_downloads):
     files = scan_directory(sample_downloads)
 
@@ -26,6 +27,7 @@ def test_all_files_have_valid_structure(sample_downloads):
         assert isinstance(f.extension, str)
         assert f.modified is not None
 
+
 def test_edge_case_files_are_handled(sample_downloads):
     files = scan_directory(sample_downloads)
 
@@ -34,6 +36,7 @@ def test_edge_case_files_are_handled(sample_downloads):
     assert "no_extension_file" in paths
     assert "weird.file.name.txt" in paths
     assert "download.crdownload" in paths
+
 
 def test_extensions_are_parsed_correctly(sample_downloads):
     files = scan_directory(sample_downloads)
@@ -44,6 +47,7 @@ def test_extensions_are_parsed_correctly(sample_downloads):
     assert by_name["image.jpg"].extension == ".jpg"
     assert by_name["no_extension_file"].extension == ""
 
+
 def test_age_is_reasonably_computed(sample_downloads):
     files = scan_directory(sample_downloads)
 
@@ -51,6 +55,7 @@ def test_age_is_reasonably_computed(sample_downloads):
 
     assert by_name["setup.exe"].age_days >= 100
     assert by_name["resume.pdf"].age_days <= 10
+
 
 def test_weird_filename_is_parsed_correctly(sample_downloads):
     files = scan_directory(sample_downloads)
@@ -74,4 +79,3 @@ def test_weird_filename_is_parsed_correctly(sample_downloads):
 
     # 5. Size should be positive (from fixture content)
     assert weird.size > 0
-
