@@ -12,5 +12,8 @@ wheels/
 # Virtual environments
 .venv
 
+# Ruff linter cache
+**/.ruff_cache/
+
 # Other files
 tests/test_OS_recycle.py
