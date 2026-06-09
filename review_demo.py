@@ -1,5 +1,7 @@
 from pathlib import Path
 from rich.console import Console
+import platform
+import subprocess
 
 from downloads_cleaner.scanner import scan_directory
 from downloads_cleaner.categorizer import batch_categorize_files
@@ -31,7 +33,7 @@ def get_sort_mode():
 
 def confirm_recycle(count):
     answer = input(f"\nMove {count} recommended file(s) to Recycle Bin? (Yes/No): ").strip().lower()
-    return answer in ("yes", "y")
+    return answer in ("yes")
 
 
 def flatten_recyclable(recommendations):
@@ -44,10 +46,58 @@ def flatten_recyclable(recommendations):
             recyclable.extend(r.files)
     return recyclable
 
+def get_windows_downloads_wsl() -> Path:
+    """
+    Returns the correct Windows Downloads folder from WSL.
+    """
+    # Ask Windows for the real user profile path
+    result = subprocess.run(
+        ["cmd.exe", "/c", "echo %USERPROFILE%"],
+        capture_output=True,
+        text=True
+    )
+
+    win_home = result.stdout.strip().replace("\\", "/")
+
+    # Convert C:/Users/username → /mnt/c/Users/username
+    if win_home.startswith("C:/"):
+        win_home = "/mnt/" + win_home.replace("C:/", "c/")
+
+    return Path(win_home) / "Downloads"
+
+def get_downloads_path(mode: str) -> Path:
+    if mode == "sandbox":
+        return Path("tests/fixtures/downloads_sample")
+
+    system = platform.system().lower()
+
+    if system == "windows":
+        return Path.home() / "Downloads"
+
+    if "microsoft" in platform.uname().release.lower():
+        return get_windows_downloads_wsl()
+
+    return Path.home() / "Downloads"
+
+def select_download_source():
+    print("Select mode:")
+    print(" 1) Sandbox (safe test data)")
+    print(" 2) Real Downloads folder")
+
+    choice = input("\nEnter choice (default = 1): ").strip()
+
+    if choice == "2":
+        print("\n⚠️ Real mode selected — using actual Downloads folder.")
+        return "real"
+
+    print("\nUsing sandbox mode.")
+    return "sandbox"
 
 def main():
-    downloads_path = Path("tests/fixtures/downloads_sample")
     console = Console()
+
+    mode = select_download_source()
+    downloads_path = get_downloads_path(mode)
 
     print("\n==============================")
     print(" Downloads Cleaner CLI Demo")
