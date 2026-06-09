@@ -39,7 +39,7 @@ Review Files (Category)
 ### File Recommendations
 After scanning and categorizing files, the tool analyzes them and recommends files that may be safe candidates for cleanup.
 
-Files are automatically flagged for safe recycling based on their category:
+Files are **automatically flagged for safe recycling** based on their category:
 
 - **TEMPORARY:** .tmp, .crdownload, .part  
   Leftover or incomplete downloads.
@@ -50,7 +50,7 @@ Files are automatically flagged for safe recycling based on their category:
 - **ARCHIVE:** .zip, .rar, .7z  
   Often old backups or extracted content.
 
-**Files that are not automatically recycled (require manual review):**
+Files that are **not automatically recycled** (require manual review):
 
 - **DOCUMENT:** .pdf, .docx, .txt  
 - **MEDIA:** .jpg, .mp3, .mp4  
