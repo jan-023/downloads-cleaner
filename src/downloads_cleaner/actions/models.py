@@ -1,8 +1,7 @@
 from dataclasses import dataclass
 from enum import Enum
 from typing import List
-from scanner import FileInfo
-
+from downloads_cleaner.scanner import FileInfo
 
 class ActionType(Enum):
     RECYCLE = "recycle"

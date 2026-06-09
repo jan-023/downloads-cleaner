@@ -14,7 +14,6 @@ def group_by_category(files):
         groups[category.value.upper()].append(f)
     return groups
 
-
 def group_by_extension(files):
     groups = defaultdict(list)
     for f in files:
