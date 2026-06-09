@@ -11,3 +11,6 @@ wheels/
 
 # Virtual environments
 .venv
+
+# Other files
+tests/test_OS_recycle.py
