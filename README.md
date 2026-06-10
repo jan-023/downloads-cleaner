@@ -10,6 +10,31 @@ Downloads Cleaner is a Python CLI tool designed to help you safely organize and 
 
 The tool automatically detects your operating system and uses the appropriate method to move files to the Recycle Bin safely. On unsupported systems, the recycle functionality will fallback to a safe operation using the `send2trash` Python package, which also ensures files are not permanently deleted.
 
+## How to Install and Run
+1. To install the tool, type:
+```bash
+uv add "git+https://github.com/jan-023/downloads-cleaner"
+```
+2. Type either command into the terminal:
+```bash
+downloads-cleaner
+```
+OR:
+```bash
+uv run downloads-cleaner
+```
+**Note:** You can run `downloads-cleaner` directly after installation, or use `uv run downloads-cleaner` to ensure it runs inside the correct isolated environment managed by uv.
+
+> **If you cloned this repository:**
+>
+> 1. Open a terminal in the cloned project folder.
+> 2. Run:
+>    ```bash
+>    uv sync
+>    uv pip install -e .
+>    ```
+> 3. Start the program with: `uv run downloads-cleaner`
+
 ## Usage
 
 Run the program from the project root directory:
