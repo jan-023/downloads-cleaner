@@ -1,5 +1,5 @@
 [project]
-name = "final-project"
+name = "downloads_cleaner"
 version = "0.1.0"
 description = "Downloads Cleaner CLI"
 readme = "README.md"
